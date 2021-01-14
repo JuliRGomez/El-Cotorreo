@@ -32,6 +32,7 @@
 
 .sidebar__searchContainer {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   background-color: white;
   width: 100%;
@@ -44,13 +45,28 @@
   padding: 10px;
 }
 .sidebar__searchContainer > input {
+  width: 80%;
   border: none;
   outline-width: 0;
-  margin-left: 10px;
+  margin-left: 0px;
 }
 
 .sidebar__chats {
   flex: 1;
   background-color: white;
   overflow: scroll;
+}
+.containerprofile{
+  width: 100%;
+  display: flex;
+}
+.containerprofile > img{
+  width: 15%;
+}
+.containerprofile{
+  display: flex;
+}
+.nameProfile{
+  margin-top:5%;
+  margin-left:2%;
 }

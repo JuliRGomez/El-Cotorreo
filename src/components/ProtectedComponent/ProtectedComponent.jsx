@@ -5,11 +5,11 @@ import Denied from "../Denied/Denied.jsx";
 export default function ProtectedComponent(props) {
   return (
     <Route path={props.path}>
-      {props.user ? (
+      {props.user.sesionActive ? (
         props.children
       ) : (
         <>
-          <Denied login={props.login}/>
+          <Denied login={props.login} />
         </>
       )}
     </Route>

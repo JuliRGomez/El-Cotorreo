@@ -2,13 +2,15 @@
   display: grid;
   place-items: center;
   height: 100vh;
-  background-color: #dadadd;
 }
 .app__body {
   display: flex;
-  background-color: #ededed;
+  background-color: #4dcdd6a2;
+  backdrop-filter: blur(8px);
+  color: white;
   margin-top: -50px;
   height: 90vh;
   width: 90vw;
-  box-shadow: -1px 4px 20px -6px rgba(0, 0, 0, 0.75);
+  -webkit-box-shadow: 5px 5px 10px rgba(255, 255, 255, 0.75);
+  -moz-box-shadow: 5px 5px 10px rgba(255, 255, 255, 0.75);
 }

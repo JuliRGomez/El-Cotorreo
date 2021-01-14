@@ -1,33 +1,48 @@
-import React, { Suspense, Spinner } from "react";
+import React, {useEffect} from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import "./App.css";
 import NavBar from "./components/NavBar/NavBar.jsx";
-import Home from "./components/Home/Home.jsx";
-import LogIn from "./components/LogIn/LogIn.jsx";
-import Register from "./components/Register/Register.jsx";
+import Home from "./components/Home/Home";
+import LoginContainer from "./containers/LoginContainer";
+import RegisterContainer from "./containers/RegisterContainer";
+import ForgotpasswordContainer from "./containers/ForgotpasswordContainer";
 import ProtectedComponent from "./components/ProtectedComponent/ProtectedComponent";
+import { useSelector, useDispatch } from 'react-redux'
+import firebase from "./firebase";
+import { setUser, checkActiveSession } from "./actions/authActions";
 
 export default function App() {
+  const user = useSelector(state => state.auth)
+  const dispatch = useDispatch();
+
+  useEffect(()=>{
+    firebase.auth().onAuthStateChanged(function(user) {
+      if (user) {
+        dispatch(setUser(user));
+        dispatch(checkActiveSession(true));
+        // User is signed in.
+      } else {
+        dispatch(checkActiveSession(false));
+        // No user is signed in.
+      }
+    });
+  },[]);
+
   return (
     <Router>
       <Switch>
         <Route exact path="/">
-          <Suspense fallback={<Spinner />}>
-            <LogIn />
-          </Suspense>
+            <LoginContainer />
         </Route>
-        <Route exact path="/register" component={Register} />
-        <ProtectedComponent>
-          <Suspense fallback={<Spinner />}>
+        <Route exact path="/register" component={RegisterContainer} />
+        <Route exact path="/recover" component={ForgotpasswordContainer} />
+        <ProtectedComponent user={user}>
             <NavBar />
-            <Route exact path="/chat" component={Home} />
-          </Suspense>
+            <Route exact path="/chat" component={Home} /> 
         </ProtectedComponent>
         <ProtectedComponent>
-          <Suspense fallback={<Spinner />}>
             <NavBar />
             <Route exact path="/chat/:id" component={Home} />
-          </Suspense>
         </ProtectedComponent>
       </Switch>
     </Router>

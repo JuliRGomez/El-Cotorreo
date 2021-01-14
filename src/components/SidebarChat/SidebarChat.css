@@ -5,14 +5,16 @@
   border-radius: 1px solid #f6f6f6;
 }
 .sidebarChat:hover {
-  background-color: #ebebeb;
+  background-color: #67dce4dc;
 }
 
 .sidebarChat__info > h2 {
   font-size: 16px;
   margin-bottom: 8px;
+  color:#0f474bef;
 }
 
 .sidebarChat__info {
   margin-left: 15px;
+  color:#0f474be1;
 }
