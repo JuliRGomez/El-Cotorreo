@@ -13,7 +13,7 @@ import MicIcon from "@material-ui/icons/Mic";
 const Chat = (props) => {
   const [input, setInput] = useState("");
   const [messages,setMessages] = useState([]);
-
+  
   const sendMessage = async (e) => {
     e.preventDefault();
     //const postNewmessage = async (input,conversationId,userId) => {
@@ -50,7 +50,7 @@ const Chat = (props) => {
       try {
         const res = await fetch(`https://academlo-whats.herokuapp.com/api/v1/conversations/${idToSearch}/messages`)
         const response = await res.json();
-        console.log(response);
+       // console.log(response);
         const messages=await response[0].messages;
         setMessages(messages);
       } 
@@ -68,11 +68,12 @@ const Chat = (props) => {
     <div className="chat">
       <div className="chat__header">
         {
-        <Avatar src={`${props.conversation.membersObj[0].photoUrl}`} />
+         
+        <Avatar src={`${props.conversation.membersObj[props.selector].photoUrl}`} />
         
         } 
         <div className="chat__headerInfo">
-        <h3>{props.conversation.membersObj[0].username}</h3>
+        <h3>{props.conversation.membersObj[props.selector].username}</h3>
           <p>Visto por ultima vez a las... </p>
         </div>
         <div className="chat__headerRight">

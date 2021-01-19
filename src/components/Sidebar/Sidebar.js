@@ -16,7 +16,7 @@ const Sidebar = (props) => {
   const menu = useRef(null);
   useOutsideAlerter(menu);
   const [conversations,setConversations]= useState([]);
-
+  let selector=0;
   function useOutsideAlerter(ref) {
     useEffect(() => {
     
@@ -93,8 +93,9 @@ useEffect(()=>{
       <div className="sidebar__chats">
       {
             conversations.map((element,index)=>{
+              element.membersObj[0]._id===props.id?selector=1:selector=0
               return(
-                <SidebarChat key={index} name={element.membersObj[0].username}  photo={element.membersObj[0].photoUrl} conversation={element} selectConversation={props.selectConversation} />
+                <SidebarChat key={index} name={element.membersObj[selector].username}  photo={element.membersObj[selector].photoUrl} conversation={element} selectConversation={props.selectConversation} selector={selector}/>
               )
           })
         }

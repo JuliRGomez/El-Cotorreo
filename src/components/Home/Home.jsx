@@ -14,11 +14,13 @@ function Home() {
   const[activeConversation, setActiveConversation] = useState({})
   const [conversationSelected, setConversationSelected] = useState(false);
   const firebaseUser = useSelector(store => store.auth.user);
+  const [selector, setSelector] = useState(0);
 
   const updateConversations = (conversation) => {
-    console.log(conversation);
+    //console.log(conversation,selector);
     setActiveConversation(conversation);
     setConversationSelected(true);
+    setSelector(selector);
   }
 
   const closeMenu = () => {
@@ -50,12 +52,15 @@ function Home() {
     user ? (<div className="app">
       <div className="app__body">
         {
-          searchChat ? (
+          activeUser?(
+          searchChat? (
             <NewSidebar closeM={closem} showMenu={showMenu} closeMenu={closeMenu} close={closeNewchat} id={activeUser._id} />) : (
               <Sidebar closeM={closem} showMenu={showMenu} closeMenu={closeMenu} newchat={newchat} id={activeUser._id} selectConversation={updateConversations} />)
-        }
+          ):null
+          
+            }
         {
-          conversationSelected ? <Chat /*messages={messages}*/conversation={activeConversation} id={activeUser._id} /> : null
+          conversationSelected ? <Chat /*messages={messages}*/conversation={activeConversation} id={activeUser._id} selector={selector}/> : null
         }
       </div>
     </div>) : (<div className="loading" href='https://dribbble.com/msaling' target='_blank'><img src='https://i.postimg.cc/Y9sR6QTW/parrots.gif' border='0' alt='parrots' /></div>)

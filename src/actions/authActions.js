@@ -24,6 +24,7 @@ export const login = (provider, email, password) => {
             .signInWithEmailAndPassword(email, password);
           //console.log(user);
           dispatch(setUser(user));
+          
         } else {
           if (provider === "google") {
             let googleProvider = new firebase.auth.GoogleAuthProvider();
