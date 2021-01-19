@@ -52,7 +52,7 @@ function Home() {
         {
           searchChat ? (
             <NewSidebar closeM={closem} showMenu={showMenu} closeMenu={closeMenu} close={closeNewchat} id={activeUser._id} />) : (
-              <Sidebar closeM={closem} newchat={newchat} id={activeUser._id} selectConversation={updateConversations} />)
+              <Sidebar closeM={closem} showMenu={showMenu} closeMenu={closeMenu} newchat={newchat} id={activeUser._id} selectConversation={updateConversations} />)
         }
         {
           conversationSelected ? <Chat /*messages={messages}*/conversation={activeConversation} id={activeUser._id} /> : null
