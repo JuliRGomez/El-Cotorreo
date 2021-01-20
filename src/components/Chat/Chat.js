@@ -37,25 +37,13 @@ const Chat = (props) => {
         );
         let results = await response.json();
         setInput("");
-        obtenMensajes(props.conversation._id);
         return(results);
         //console.log(results);
       
       }
+      
+  
 }
-
-const obtenMensajes=async (id)=>{
-  try {
-    const res = await fetch(`https://academlo-whats.herokuapp.com/api/v1/conversations/${id}/messages`)
-    const response = await res.json();
-   // console.log(response);
-    const messages=await response[0].messages;
-    setMessages(messages);
-  } 
-  catch (error) {
-    console.log(error)
-  }
-} 
   useEffect(()=>{
     
     const getMessages = async(idToSearch) => {
