@@ -3,7 +3,6 @@ import { SearchOutlined,ArrowBackOutlined } from "@material-ui/icons";
 import SidebarChat from "../SidebarChat/SidebarChat";
 import {useDispatch,useSelector} from "react-redux"
 import {getUsersAction} from "../../usersDucks"
-
 import "./Sidebar.css";
 import { IconButton } from "@material-ui/core";
 
