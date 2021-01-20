@@ -52,6 +52,7 @@ export const login = (provider, email, password) => {
           }
         }
         resolve(true);
+        //localStorage.setItem("logged", true);
       } catch (error) {
         //console.log(error);
         reject(error);

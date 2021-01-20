@@ -1,4 +1,4 @@
-import React, { useState,useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import "./Home.css";
 import Sidebar from "../Sidebar/Sidebar";
 import Chat from "../Chat/Chat";
@@ -11,7 +11,7 @@ function Home() {
   const dispatch = useDispatch();
   let [closem, setCloseprofile] = useState(true);
   const [searchChat, setSearchChat] = useState(false);
-  const[activeConversation, setActiveConversation] = useState({})
+  const [activeConversation, setActiveConversation] = useState({})
   const [conversationSelected, setConversationSelected] = useState(false);
   const firebaseUser = useSelector(store => store.auth.user);
   const [selector, setSelector] = useState(0);
@@ -51,16 +51,19 @@ function Home() {
   return (
     user ? (<div className="app">
       <div className="app__body">
+        
         {
-          activeUser?(
-          searchChat? (
-            <NewSidebar closeM={closem} showMenu={showMenu} closeMenu={closeMenu} close={closeNewchat} id={activeUser._id} />) : (
-              <Sidebar closeM={closem} showMenu={showMenu} closeMenu={closeMenu} newchat={newchat} id={activeUser._id} selectConversation={updateConversations} />)
-          ):null
-          
-            }
+          activeUser ? (
+            searchChat ? (
+              <NewSidebar closeM={closem} showMenu={showMenu} closeMenu={closeMenu} close={closeNewchat} id={activeUser._id} />) : (
+                <Sidebar closeM={closem} showMenu={showMenu} closeMenu={closeMenu} newchat={newchat} id={activeUser._id} selectConversation={updateConversations} />)
+          ) : null
+
+        }
         {
-          conversationSelected ? <Chat /*messages={messages}*/conversation={activeConversation} id={activeUser._id} selector={selector}/> : null
+          conversationSelected ? <Chat conversation={activeConversation} id={activeUser._id} selector={selector} /> : <div href='https://dribbble.com/msaling' target='_blank'>
+          <img className="gif" src='https://i.postimg.cc/RZHYS82g/cotorrosyletras.gif' border='0' alt='parrots' />
+        </div>
         }
       </div>
     </div>) : (<div className="loading" href='https://dribbble.com/msaling' target='_blank'><img src='https://i.postimg.cc/Y9sR6QTW/parrots.gif' border='0' alt='parrots' /></div>)
