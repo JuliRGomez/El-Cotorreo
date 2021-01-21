@@ -44,7 +44,7 @@ useEffect(()=>{
       const activeConversations= await response.filter(element=>{
         
           return(
-            element.members[0]===props.id||element.members[1]===props.id
+            ((element.members[0]===props.id||element.members[1]===props.id)&&element.membersObj.length>=2)
           )
           // if(element.members[0]===props.id||element.members[1]===props.id){
           //     //console.log(element);
@@ -92,12 +92,14 @@ useEffect(()=>{
       </div>
       <div className="sidebar__chats">
       {
+            conversations.length?(
             conversations.map((element,index)=>{
               element.membersObj[0]._id===props.id?selector=1:selector=0
               return(
                 <SidebarChat key={index} name={element.membersObj[selector].username}  photo={element.membersObj[selector].photoUrl} conversation={element} selectConversation={props.selectConversation} selector={selector}/>
               )
           })
+            ):null
         }
         
         {/* <SidebarChat />
