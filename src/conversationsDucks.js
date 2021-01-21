@@ -2,6 +2,7 @@
 const defaultState = {
 
     conversations: []
+    
 }
 
 // types
@@ -18,23 +19,30 @@ export default function conversationsReducer(state = defaultState, action){
     }
 }
 
-// actions
-// export const conversationsAction = (idToSearch) => async (dispatch, getState) => {
-//     console.log(idToSearch);
-//     try {
-//         const res = await fetch('https://academlo-whats.herokuapp.com/api/v1/users/1/conversations')
-//         const response = await res.json();
-//         const activeConversations= await response.map(element=>{
-//             if(element.members[0]===idToSearch||element.members[1]===idToSearch){
-//                 return(element);
-//             }
-//         })
-//         dispatch({
-//             type: GET_CONVERSATIONS_SUCCESS,
-//             payload: activeConversations
-//         })
+//actions
+export const conversationsAction = (idToSearch) => async (dispatch, getState) => {
+    console.log(idToSearch);
+    try {
+        const res = await fetch('https://academlo-whats.herokuapp.com/api/v1/users/1/conversations')
+        const response = await res.json();
+        //console.log(idToSearch);
+        const activeConversations= await response.filter(element=>{
         
-//     } catch (error) {
-//         console.log(error)
-//     }
-// }
+        return(
+            ((element.members[0]===idToSearch||element.members[1]===idToSearch)&&element.membersObj.length>=2)
+        )
+          // if(element.members[0]===props.id||element.members[1]===props.id){
+          //     //console.log(element);
+          //     return(element);
+          // }
+          
+      })
+        dispatch({
+            type: GET_CONVERSATIONS_SUCCESS,
+            payload: activeConversations
+        })
+        
+    } catch (error) {
+        console.log(error)
+    }
+}

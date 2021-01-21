@@ -1,14 +1,29 @@
 import { Avatar } from "@material-ui/core";
-import React from "react";
+import {React,useState} from "react";
 import "./SidebarChat.css";
+import MoreVertIcon from "@material-ui/icons/MoreVert";
+import DeleteMenu from "../deleteMenu"
 //onClick={()=>props.createChat(props.idActive,props.partnerId)}
 const SidebarChatt = (props) => {
+    const [deleteMenu,setDeleteMenu]=useState(false);
+
+    const showDelete=()=>{
+      setDeleteMenu(!deleteMenu);
+    }
+
+
   return (
     <div className="sidebarChat" onClick={()=>props.selectConversation(props.conversation,props.selector)}>
       <Avatar src={`${props.photo}`}/>
       <div className="sidebarChat__info">
         <h2>{props.name}</h2>
         <p>Último mensaje</p>
+      </div>
+      <div>
+              <MoreVertIcon onClick={showDelete}  />
+      </div>
+      <div>
+        {deleteMenu?<DeleteMenu idConversation={props.conversation._id} />:null}
       </div>
     </div>
   );

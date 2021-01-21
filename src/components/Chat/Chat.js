@@ -8,12 +8,13 @@ import {
 } from "@material-ui/icons";
 import "./Chat.css";
 import MicIcon from "@material-ui/icons/Mic";
-
-
+import Message from "./Message"
 const Chat = (props) => {
   const [input, setInput] = useState("");
   const [messages,setMessages] = useState([]);
-  
+
+
+
   const sendMessage = async (e) => {
     e.preventDefault();
     //const postNewmessage = async (input,conversationId,userId) => {
@@ -105,16 +106,7 @@ const obtenMensajes=async (id)=>{
         {
         messages.map((message, i) => {
           return (
-            <p
-              key={i}
-              className={`chat__message ${
-                message.received && "chat__reciever"
-              }`}
-            >
-              <span className="chat__name">{message.userId===props.id?props.conversation.membersObj[1].username:props.conversation.membersObj[0].username}</span>
-              {message.message}
-              {/* <span className="chat__timestamp">{message.timestamp}</span> */}
-            </p>
+            <Message message={message} id={props.id} conversation={props.conversation}/>
           );
         })
         }
