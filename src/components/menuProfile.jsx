@@ -10,8 +10,10 @@ export default function MenuProfile(props) {
   
   const dispatch = useDispatch(); 
   const history = useHistory();
+
+
   const logoutfn = async() => {
-    localStorage.setItem("logged", false);
+
     try{
       await dispatch(logout(false));
       history.push("/");

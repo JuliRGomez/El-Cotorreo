@@ -39,7 +39,6 @@ export default function App() {
           </Route>
           <Route exact path="/register" component={RegisterContainer} />
           <Route exact path="/recover" component={ForgotpasswordContainer} />
-          <Route exact path="/privacy_policy" component={ForgotpasswordContainer} />
           <ProtectedComponent user={user}>
             <NavBar />
             <Route exact path="/chat" component={Home} />

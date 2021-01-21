@@ -44,7 +44,7 @@ useEffect(()=>{
       const activeConversations= await response.filter(element=>{
         
           return(
-            element.members[0]===props.id||element.members[1]===props.id
+            ((element.members[0]===props.id||element.members[1]===props.id)&&element.membersObj.length>=2)
           )
           // if(element.members[0]===props.id||element.members[1]===props.id){
           //     //console.log(element);
