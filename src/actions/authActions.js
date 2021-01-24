@@ -45,16 +45,13 @@ export const login = (provider, email, password) => {
             userupdt.updateProfile({
               photoURL: `https://graph.facebook.com/${user.providerData[0].uid}/picture?access_token=${credential.accessToken}`,
             });
-            //console.log(user);
             dispatch(setUser(user));
-            //console.log(user);
             getUsers(user.email, user.displayName, "", user.uid, user.photoURL);
           }
         }
         resolve(true);
-        //localStorage.setItem("logged", true);
+        localStorage.setItem("logged", true);
       } catch (error) {
-        //console.log(error);
         reject(error);
       }
     });
@@ -85,7 +82,6 @@ export const Register = (email, password, name, lastname) => {
 
         resolve(true);
       } catch (error) {
-        //console.log(error);
         reject(error);
       }
     });
@@ -111,11 +107,12 @@ export const logout = (sesionactive) => {
 
   return {
     type: "LOGOUT_SYSTEM",
-    sesionactive,
+    sesionactive ,
   };
 };
 
 export const checkActiveSession = (sesionactive) => {
+
   return {
     type: "CHECK_ACTIVE_SESSION",
     sesionactive,

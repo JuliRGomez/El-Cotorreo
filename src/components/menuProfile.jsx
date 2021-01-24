@@ -17,13 +17,11 @@ export default function MenuProfile(props) {
       history.push("/");
     }catch(error){
       swal("Error", "¡Las credenciales para el usuario son incorrectas!", "error");
-      //console.log("Las credenciales para el usuario son incorrectas");
     }
   }
    return(<>
           
           <div>
-            <Dropdown.Item eventKey="3">Configuración</Dropdown.Item>
             <Dropdown.Item onClick={() => (logoutfn())}>Cerrar sesion</Dropdown.Item>
           </div>
           

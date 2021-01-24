@@ -7,7 +7,6 @@ import { changeUser } from "../../usersDucks"
 import { useSelector, useDispatch } from 'react-redux';
 
 function Home() {
-  const user = useSelector(state => state.auth);
   const dispatch = useDispatch();
   let [closem, setCloseprofile] = useState(true);
   const [searchChat, setSearchChat] = useState(false);
@@ -49,7 +48,7 @@ function Home() {
   const activeUser = useSelector(store => store.users.activeUser);
 
   return (
-    user ? (<div className="app">
+    <div className="app">
       <div className="app__body">
         
         {
@@ -66,8 +65,7 @@ function Home() {
         </div>
         }
       </div>
-    </div>) : (<div className="loading" href='https://dribbble.com/msaling' target='_blank'><img src='https://i.postimg.cc/Y9sR6QTW/parrots.gif' border='0' alt='parrots' /></div>)
-  );
+    </div>)
 }
 
 export default Home;
