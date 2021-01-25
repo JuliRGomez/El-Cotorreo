@@ -6,6 +6,7 @@ import NewSidebar from "../Sidebar/newChat"
 import { changeUser } from "../../usersDucks"
 import { useSelector, useDispatch } from 'react-redux';
 
+
 function Home() {
   const dispatch = useDispatch();
   let [closem, setCloseprofile] = useState(true);
@@ -44,6 +45,8 @@ function Home() {
     }
     getActiveUser();
   }, [dispatch, firebaseUser]);
+
+
 
   const activeUser = useSelector(store => store.users.activeUser);
 

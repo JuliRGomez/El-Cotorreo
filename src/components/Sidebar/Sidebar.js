@@ -8,7 +8,7 @@ import { SearchOutlined } from "@material-ui/icons";
 import SidebarChat from "../SidebarChat/SidebarChat_";
 import MenuProfile from "../menuProfile";
 import {useSelector} from "react-redux"
-
+import Pusher from "pusher-js";
 
 
 const Sidebar = (props) => {
@@ -63,6 +63,25 @@ useEffect(()=>{
 
 },[props.id]);
 
+useEffect(()=>{
+  if(conversations.length>0){
+
+  const pusher = new Pusher ('ea7bbbc9cf62452025dd',{
+      cluster: 'us2'
+  });
+  conversations.forEach(element=>{
+    const channel = pusher.subscribe(element._id);
+    channel.bind('inserted',function(data){
+      console.log(data);
+    })
+    
+  })
+    
+}
+},[conversations])
+
+
+
   return (
 
     <div className="sidebar">
@@ -96,7 +115,7 @@ useEffect(()=>{
             conversations.map((element,index)=>{
               element.membersObj[0]._id===props.id?selector=1:selector=0
               return(
-                <SidebarChat key={index} name={element.membersObj[selector].username}  photo={element.membersObj[selector].photoUrl} conversation={element} selectConversation={props.selectConversation} selector={selector}/>
+                <SidebarChat key={index} name={element.membersObj[selector].username}  photo={element.membersObj[selector].photoUrl} conversation={element} selectConversation={props.selectConversation} selector={selector} notification={notification}/>
               )
           })
             ):null

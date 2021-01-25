@@ -39,7 +39,7 @@ export const getUsersAction = () => async (dispatch, getState) => {
 
 export const changeUser=(userObj)=>async(dispatch,getState)=>{
     try {
-        console.log("cmbiando usuario....");
+        //console.log("cmbiando usuario....");
         const res = await fetch('https://academlo-whats.herokuapp.com/api/v1/users')
         const response = await res.json();
         const newUser=response.find(element=>element.uid===userObj.uid);
