@@ -16,6 +16,7 @@ const Sidebar = (props) => {
   const menu = useRef(null);
   useOutsideAlerter(menu);
   const [conversations,setConversations]= useState([]);
+  const [conversationNotify,setNotify]=useState([]);
   let selector=0;
   function useOutsideAlerter(ref) {
     useEffect(() => {
@@ -52,8 +53,16 @@ useEffect(()=>{
           // }
           
       })
-      //console.log(activeConversations);
+      const agreeProperty = {notifications:false};
+      const conversationUpdate=activeConversations.map(element => {
+        return(
+          Object.assign(element,agreeProperty)
+        )
+      });
+       //console.log(activeConversations);
+      setNotify(conversationUpdate);
       setConversations(activeConversations);
+      
     } 
     catch (error) {
       console.log(error)
@@ -112,10 +121,10 @@ useEffect(()=>{
       <div className="sidebar__chats">
       {
             conversations.length?(
-            conversations.map((element,index)=>{
+            conversationNotify.map((element,index)=>{
               element.membersObj[0]._id===props.id?selector=1:selector=0
               return(
-                <SidebarChat key={index} name={element.membersObj[selector].username}  photo={element.membersObj[selector].photoUrl} conversation={element} selectConversation={props.selectConversation} selector={selector} notification={notification}/>
+                <SidebarChat key={index} name={element.membersObj[selector].username}  photo={element.membersObj[selector].photoUrl} conversation={element} selectConversation={props.selectConversation} selector={selector} notification={element.notifications}/>
               )
           })
             ):null
