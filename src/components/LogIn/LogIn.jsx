@@ -10,6 +10,8 @@ import { Link, useHistory } from "react-router-dom";
 import { login, checkActiveSession } from "../../actions/authActions";
 import { useDispatch } from "react-redux";
 import swal from "sweetalert";
+//import Denied from "../Denied/Denied"
+//<Denied login={login} />
 
 const ColoredInput = withStyles({
   root: {
@@ -63,7 +65,13 @@ export default function LoginComponent(props) {
         dispatch(checkActiveSession(true));
         history.push("/chat");
       } catch (error) {
-        swal("¡Para entrar Al Cotorreo!", "¡Debes registrarte!", "error");
+        swal({ 
+                title: "¡Para entrar Al Cotorreo!", 
+                text: "¡Debes registrarte!", 
+                icon: "error",
+                button: "Aceptar", }).then(function () {
+            history.push("/register");
+          });
       }
     }
   };

@@ -1,7 +1,6 @@
 import React, { useEffect } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import "./App.css";
-import NavBar from "./components/NavBar/NavBar.jsx";
 import Home from "./components/Home/Home";
 import LoginContainer from "./containers/LoginContainer";
 import RegisterContainer from "./containers/RegisterContainer";
@@ -41,11 +40,9 @@ export default function App() {
           <Route exact path="/recover" component={ForgotpasswordContainer} />
           <Route exact path="/privacy_policy" component={ForgotpasswordContainer} />
           <ProtectedComponent user={user}>
-            <NavBar />
             <Route exact path="/chat" component={Home} />
           </ProtectedComponent>
           <ProtectedComponent>
-            <NavBar />
             <Route exact path="/chat/:id" component={Home} />
           </ProtectedComponent>
         </Switch>
