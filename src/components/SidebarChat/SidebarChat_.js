@@ -16,7 +16,7 @@ const SidebarChatt = (props) => {
   return (
     <div className="sidebarChat" onClick={()=>props.selectConversation(props.conversation,props.selector)}>
       <Avatar src={`${props.photo}`}/>
-      {props.notification?<NotificationsIcon />:null }
+      {props.notifications?<NotificationsIcon />:null }
       <div className="sidebarChat__info">
         <h2>{props.name}</h2>
         <p>Último mensaje</p>

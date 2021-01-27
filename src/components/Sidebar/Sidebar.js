@@ -81,7 +81,16 @@ useEffect(()=>{
   conversations.forEach(element=>{
     const channel = pusher.subscribe(element._id);
     channel.bind('inserted',function(data){
-      console.log(data);
+     
+      conversations.forEach(element => {
+          if(element._id===data.id){
+            element.notifications=true;
+           console.log(element);
+          }
+         
+        });
+        
+      setConversations(conversations);
     })
     
   })
