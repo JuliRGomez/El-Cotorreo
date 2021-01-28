@@ -73,30 +73,33 @@ useEffect(()=>{
 },[props.id]);
 
 useEffect(()=>{
-  if(conversations.length>0){
+  if(conversationNotify.length>0){
 
   const pusher = new Pusher ('ea7bbbc9cf62452025dd',{
       cluster: 'us2'
   });
-  conversations.forEach(element=>{
+
+  conversationNotify.forEach(element=>{
     const channel = pusher.subscribe(element._id);
     channel.bind('inserted',function(data){
-     
-      conversations.forEach(element => {
-          if(element._id===data.id){
+      let newConversation=[...conversationNotify];
+      newConversation.forEach(element => {
+          if(element._id===data.conversationId){
             element.notifications=true;
            console.log(element);
+           setNotify(newConversation);
           }
          
         });
         
-      setConversations(conversations);
+     
     })
-    
   })
     
+  
+    
 }
-},[conversations])
+},[conversationNotify])
 
 
 
@@ -129,7 +132,7 @@ useEffect(()=>{
       </div>
       <div className="sidebar__chats">
       {
-            conversations.length?(
+            conversationNotify.length?(
             conversationNotify.map((element,index)=>{
               element.membersObj[0]._id===props.id?selector=1:selector=0
               return(
