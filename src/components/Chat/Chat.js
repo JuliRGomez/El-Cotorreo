@@ -1,19 +1,12 @@
 import React, { useState,useEffect } from "react";
-import { Avatar, IconButton } from "@material-ui/core";
-import {
-  AttachFile,
-  InsertEmoticon,
-  MoreVert,
-  SearchOutlined,
-} from "@material-ui/icons";
+import { Avatar } from "@material-ui/core";
 import "./Chat.css";
-import MicIcon from "@material-ui/icons/Mic";
 import Message from "./Message"
+
+
 const Chat = (props) => {
   const [input, setInput] = useState("");
   const [messages,setMessages] = useState([]);
-
-
 
   const sendMessage = async (e) => {
     e.preventDefault();
@@ -43,20 +36,21 @@ const Chat = (props) => {
         //console.log(results);
       
       }
-}
-
-const obtenMensajes=async (id)=>{
-  try {
-    const res = await fetch(`https://academlo-whats.herokuapp.com/api/v1/conversations/${id}/messages`)
-    const response = await res.json();
-   // console.log(response);
-    const messages=await response[0].messages;
-    setMessages(messages);
-  } 
-  catch (error) {
-    console.log(error)
   }
-} 
+
+  const obtenMensajes=async (id)=>{
+    try {
+      const res = await fetch(`https://academlo-whats.herokuapp.com/api/v1/conversations/${id}/messages`)
+      const response = await res.json();
+    // console.log(response);
+      const messages=await response[0].messages;
+      setMessages(messages);
+    } 
+    catch (error) {
+      console.log(error)
+    }
+  }
+
   useEffect(()=>{
     
     const getMessages = async(idToSearch) => {
@@ -87,33 +81,21 @@ const obtenMensajes=async (id)=>{
         } 
         <div className="chat__headerInfo">
         <h3>{props.conversation.membersObj[props.selector].username}</h3>
-          <p>Visto por ultima vez a las... </p>
-        </div>
-        <div className="chat__headerRight">
-          <IconButton>
-            <SearchOutlined />
-          </IconButton>
-          <IconButton>
-            <AttachFile />
-          </IconButton>
-          <IconButton>
-            <MoreVert />
-          </IconButton>
+          <p>Última conexión {props.time}</p>
         </div>
       </div>
 
       <div className="chat__body">
         {
-        messages.map((message, i) => {
-          return (
-            <Message message={message} id={props.id} conversation={props.conversation}/>
-          );
+        messages.map((message, index) => {
+            return (
+              <Message key={index} className="message_recibed" message={message} id={props.id} conversation={props.conversation}/>
+            );
         })
         }
       </div>
 
       <div className="chat__footer">
-        <InsertEmoticon />
         <form onSubmit={sendMessage}>
           <input className="chat__input"
             value={input}
@@ -127,7 +109,6 @@ const obtenMensajes=async (id)=>{
             Enviar
           </button>
         </form>
-        <MicIcon />
       </div>
     </div>
     

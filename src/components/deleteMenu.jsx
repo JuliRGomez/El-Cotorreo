@@ -27,7 +27,7 @@ const deleteConversation= async ()=>{
           
           <div>
             
-            <Dropdown.Item onClick={deleteConversation} >Eliminar</Dropdown.Item>
+            <Dropdown.Item onClick={deleteConversation}>Eliminar</Dropdown.Item>
           </div>
           
           </>

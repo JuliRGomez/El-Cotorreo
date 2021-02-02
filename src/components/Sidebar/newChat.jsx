@@ -82,7 +82,7 @@ const NewSidebar = (props)=>{
         <div className="sidebar__search">
             <div className="sidebar__searchContainer">
                 <SearchOutlined />
-                <input onChange={handleInputSearch} placeholder="Busca o inicia un nuevo chat" type="text" />
+                <input onChange={handleInputSearch} placeholder="Buscar e iniciar un nuevo chat" type="text" />
             </div>
         </div>
 

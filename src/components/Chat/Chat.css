@@ -37,27 +37,54 @@
   font-size: 16px;
   padding: 10px;
   width: fit-content;
+
   border-radius: 10px;
   background-color: #24666b;
   margin-left: auto;
   margin-bottom: 30px;
 }
 
-.chat__timestamp {
+.chat__reciever {
+  position: relative;
+  font-size: 16px;
+  padding: 10px;
+  width: fit-content;
+  white-space: normal;
+  border-radius: 10px;
+  background-color: #a3f9ff;
+  color: #24666b;
+  margin-right: auto;
+  margin-bottom: 30px;
+}
+
+.chat__timestamp1 {
   margin-left: 10px;
+  color: #ffffff;
   font-size: xx-small;
 }
 
-.chat__name {
+.chat__timestamp2 {
+  margin-left: 10px;
+  color: #043838;
+  font-size: xx-small;
+}
+  
+/*.chat__name1 {
   position: absolute;
+  width: fit-content;
+  color: white;
   top: -15px;
   font-weight: 800;
   font-size: xx-small;
 }
-.chat__reciever {
-  background-color: #4dcdd6;
-  margin-left: auto;
-}
+.chat__name2 {
+  width: fit-content;
+  position: absolute;
+  color: #132e30;
+  top: -15px;
+  font-weight: 800;
+  font-size: xx-small;
+}*/
 
 .chat__footer {
   display: flex;

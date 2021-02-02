@@ -11,6 +11,7 @@
     "axios": "^0.21.1",
     "bootstrap": "^4.5.3",
     "firebase": "^8.2.2",
+    "luxon": "^1.25.0",
     "pusher-js": "^7.0.2",
     "react": "^16.13.1",
     "react-bootstrap-validation": "^0.1.11",
