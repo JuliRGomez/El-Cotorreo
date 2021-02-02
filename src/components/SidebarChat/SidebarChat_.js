@@ -5,12 +5,9 @@ import ChevronRightIcon from "@material-ui/icons/ChevronRight";
 import DeleteMenu from "../deleteMenu";
 import NotificationsIcon from "@material-ui/icons/Notifications";
 //onClick={()=>props.createChat(props.idActive,props.partnerId)}
-const SidebarChatt = (props) => {
-  const [deleteMenu, setDeleteMenu] = useState(false);
 
-  const hideDelete = () => {
-    setDeleteMenu(false);
-  };
+const SidebarChat = (props) => {
+  const [deleteMenu, setDeleteMenu] = useState(false);
 
   const showDelete = () => {
     setDeleteMenu(!deleteMenu);
@@ -59,4 +56,4 @@ const SidebarChatt = (props) => {
     </div>
   );
 };
-export default SidebarChatt;
+export default SidebarChat;

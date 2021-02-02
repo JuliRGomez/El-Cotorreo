@@ -112,6 +112,7 @@ const Sidebar = (props) => {
         </div>
       </div>
       <div className="sidebar__chats">
+      
         {conversationNotify.length
           ? conversationNotify.map((element, index) => {
               element.membersObj[0]._id === props.id

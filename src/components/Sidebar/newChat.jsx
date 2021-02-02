@@ -1,7 +1,7 @@
 import React, { useState,useEffect } from "react";
 import { SearchOutlined,ArrowBackOutlined } from "@material-ui/icons";
 import SidebarChat from "../SidebarChat/SidebarChat";
-import {useDispatch,useSelector} from "react-redux"
+import {useDispatch, useSelector} from "react-redux"
 import {getUsersAction} from "../../usersDucks"
 import {conversationsAction} from "../../conversationsDucks"
 import "./Sidebar.css";
@@ -28,12 +28,11 @@ const NewSidebar = (props)=>{
         //console.log(firebaseUser);
         
     },[dispatch,props.id]);
+    
     const conversations=useSelector(store=>store.conversations.conversations);
 
     const handleInputSearch= async (event)=>{
         setContent(event.target.value);
-        
-        
     }
 
     const createChat =async (idActiveUser,idPartner)=> {
@@ -94,12 +93,6 @@ const NewSidebar = (props)=>{
                     <SidebarChat key={index} name={element.firstName} photo={element.photoUrl}createChat={createChat} idActive={props.id} partnerId={element._id} close={props.close}/>
                 )
             })
-        //     dataUsers.map((element,index)=>{
-        //     return(
-        //         <SidebarChat key={index} name={element.firstName} />
-        //       )
-             
-        //   })
         }
      
       </div>
